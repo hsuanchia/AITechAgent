@@ -40,3 +40,8 @@ AITechAgent/
 * API for frontend - FastAPI
 * Metadata for PostgreSQL / Embedding for MongoDB
 * Updata database everyday(Crawling from arxiv api and process data into database)
+* RAG improvement
+    * Current model - google/flan-t5-small
+    * Current retrieval strategy - Top-k(k=5) with reranking(top-20)
+    * Prompt engineering
+    * History chat
