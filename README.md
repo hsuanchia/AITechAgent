@@ -23,9 +23,10 @@ CatsAndDogs/
 # Inital result
 > Current result are not stable, **NOT** all question can be answered well, still in improvement...
 * Example 1
-!<img src="./Imgs/init_rag_1.png" width="400">
+<img src="./Imgs/init_rag_1.png" width="400">
+
 * Example 2
-!<img src="./Imgs/init_rag_2.png" width="400">
+<img src="./Imgs/init_rag_2.png" width="400">
 # To do
 * Agent 
 * Frontend - React
