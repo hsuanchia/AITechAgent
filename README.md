@@ -27,6 +27,8 @@ CatsAndDogs/
 
 * Example 2
 <img src="./Imgs/init_rag_2.png" width="400">
+
 # To do
+
 * Agent 
 * Frontend - React
