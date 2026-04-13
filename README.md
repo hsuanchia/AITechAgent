@@ -5,6 +5,11 @@
 > 希望透過這個Project拾回從前學習新技術的心態與衝勁，把自己也做一次技術上的更新><
 >
 > 預期利用技術: PostgreSQL, MongoDB, RAG, Agents, MCP, FastAPI, React,
+# Data
+* Public data from [arxiv.org](https://arxiv.org/)
+>**Thank you to arXiv for use of its open access interoperability!**
+* Use data with cs.AI & cs.LG tag -> May crawling cs.CV in future
+* Using paper published from 2025/01 ~ 2026/04
 # Codes
 ```text
 AITechAgent/
