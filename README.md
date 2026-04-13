@@ -7,7 +7,7 @@
 > 預期利用技術: PostgreSQL, MongoDB, RAG, Agents, MCP, FastAPI, React,
 # Codes
 ```text
-CatsAndDogs/
+AITechAgent/
 ├── Imgs/                   # Folder containing Some Image about result or what
 |
 ├── arxiv.py                # Crawling data from arxiv through arxiv api
@@ -30,5 +30,8 @@ CatsAndDogs/
 
 # To do
 
-* Agent 
+* Agent / MCP
 * Frontend - React
+* API for frontend - FastAPI
+* Metadata for PostgreSQL / Embedding for MongoDB
+* Updata database everyday(Crawling from arxiv api and process data into database)
