@@ -15,7 +15,14 @@
 AITechAgent/
 ├── Imgs/                   # Folder containing some image about result or what
 |
-├── api.py                  # Api for frontend -> Use FastAPI
+├── frontend/src/
+|   ├── component/
+|   |   └── chat.jsx        # API for chat with LLM using RAG
+|   |   └── search.jsx      # API for searching in DB using SQL
+|   |
+|   └── APP.jsx             # Frontend by react
+|
+├── api.py                  # Api backend -> Use FastAPI
 |
 ├── arxiv.py                # Crawling data from arxiv through arxiv api
 |
