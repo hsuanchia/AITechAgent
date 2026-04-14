@@ -13,7 +13,9 @@
 # Codes
 ```text
 AITechAgent/
-├── Imgs/                   # Folder containing Some Image about result or what
+├── Imgs/                   # Folder containing some image about result or what
+|
+├── api.py                  # Api for frontend -> Use FastAPI
 |
 ├── arxiv.py                # Crawling data from arxiv through arxiv api
 |
@@ -27,21 +29,19 @@ AITechAgent/
 ```
 # Inital result
 > Current result are not stable, **NOT** all question can be answered well, still in improvement...
-* Example 1
+* Chat with RAG example 1
 <img src="./Imgs/init_rag_1.png" width="400">
 
-* Example 2
+* Chat with RAG example 2
 <img src="./Imgs/init_rag_2.png" width="400">
 
 # To do
-
 * Agent / MCP
-* Frontend - React
-* API for frontend - FastAPI
 * Metadata for PostgreSQL / Embedding for MongoDB
 * Updata database everyday(Crawling from arxiv api and process data into database)
-* RAG improvement
+* Frontend - React improvement
+* RAG
     * Current model - google/flan-t5-small
     * Current retrieval strategy - Top-k(k=5) with reranking(top-20)
     * Prompt engineering
-    * History chat
+    * Not inaccurate chatting
