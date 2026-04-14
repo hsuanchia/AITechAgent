@@ -1,14 +1,10 @@
 import json, psycopg
 from rich.progress import track
 
-conn = psycopg.connect(
-    dbname="arxiv",
-    user="xxxxx",
-    password="xxxxx",
-    host="localhost",
-    port="5432"
-)
+with open("config.json") as f:
+    config = json.load(f)
 
+conn = psycopg.connect(**config)
 cur = conn.cursor()
 
 def insert_paper(paper):

@@ -1,10 +1,11 @@
+import psycopg, json
 from fastapi import FastAPI
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer, CrossEncoder
 from transformers import pipeline
 from rag import rewrite_query, retrieve, build_context
 from fastapi.middleware.cors import CORSMiddleware
-import psycopg
+
 
 app = FastAPI()
 app.add_middleware(
@@ -13,6 +14,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+with open("config.json") as f:
+    config = json.load(f)
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 reranker = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
@@ -27,13 +31,7 @@ class SearchRequest(BaseModel):
 @app.post("/search")
 def search(req: SearchRequest):
     q = f"%{req.query}%"
-    conn = psycopg.connect(
-        dbname="arxiv",
-        user="hsuanchia",
-        password="hsuanchia",
-        host="localhost",
-        port="5432"
-    )
+    conn = psycopg.connect(**config)
     with conn.cursor() as cur:
         cur.execute("""
             SELECT title, abstract, url
