@@ -49,7 +49,6 @@ AITechAgent/
 * Agent / MCP
 * Metadata for PostgreSQL
 * Updata database everyday(Crawling from arxiv api and process data into database)
-* Frontend - React improvement
 * RAG
     * Current model - google/flan-t5-small
     * Current retrieval strategy - Top-k(k=5) with reranking(top-50)
