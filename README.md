@@ -4,7 +4,7 @@
 >
 > 希望透過這個Project拾回從前學習新技術的心態與衝勁，把自己也做一次技術上的更新><
 >
-> 預期利用技術: PostgreSQL, MongoDB, RAG, Agents, MCP, FastAPI, React,
+> 預期利用技術: PostgreSQL, RAG, Agents, MCP, FastAPI, React,
 # Data
 * Public data from [arxiv.org](https://arxiv.org/)
 >**Thank you to arXiv for use of its open access interoperability!**
@@ -42,13 +42,16 @@ AITechAgent/
 * Chat with RAG example 2
 <img src="./Imgs/init_rag_2.png" width="400">
 
+# Demo
+![AITechAgent Local Demo](/Imgs/Simple_demo_0415.gif)
+
 # To do
 * Agent / MCP
-* Metadata for PostgreSQL / Embedding for MongoDB
+* Metadata for PostgreSQL
 * Updata database everyday(Crawling from arxiv api and process data into database)
 * Frontend - React improvement
 * RAG
     * Current model - google/flan-t5-small
-    * Current retrieval strategy - Top-k(k=5) with reranking(top-20)
+    * Current retrieval strategy - Top-k(k=5) with reranking(top-50)
     * Prompt engineering
     * Not inaccurate chatting
