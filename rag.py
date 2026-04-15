@@ -19,19 +19,21 @@ cur = conn.cursor()
 def retrieve(query, top_k=5):
     q_emb = model.encode(query).tolist()
 
-    # Grab 20 candidates for better reranking
+    # Grab 50 candidates for better reranking 
+    # <=> means cosine similarity for pgvector 
+    # <-> means euclidean distance
     cur.execute("""
     SELECT id, title, abstract
     FROM papers
-    ORDER BY embedding <-> %s::vector
-    LIMIT 20
+    ORDER BY embedding <-> %s::vector 
+    LIMIT 50
     """, (q_emb,))
     
     candidates = cur.fetchall()
     keywords = keyword_search(query)
     combine = candidates + keywords
 
-    # rerank
+    # Rerank
     pairs = [(query, title + " " + abstract) for _, title, abstract in combine]
     scores = reranker.predict(pairs)
 
@@ -40,12 +42,12 @@ def retrieve(query, top_k=5):
 
     return [item[0] for item in ranked[:top_k]]
 
-def build_context(results, max_chars=500):
+def build_context(results, max_chars=300):
     context = []
     for i, (_, title, abstract) in enumerate(results):
         context.append(
             f"[Paper {i+1}] {title}\n"
-            f"Key Idea: {abstract[:300]}..."
+            f"Abstract: {abstract[:max_chars]}..."
         )
     return "\n\n".join(context)
 
