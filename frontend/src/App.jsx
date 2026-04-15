@@ -9,8 +9,14 @@ function App() {
     <div>
       <h1>AI Tech Assistant</h1>
 
-      <button onClick={() => setMode("chat")}>Chat</button>
-      <button onClick={() => setMode("search")}>Search</button>
+      <button onClick={() => setMode("chat")}
+        style={{ fontSize: "20px", padding: "10px 20px" }}>
+        Chat
+      </button>
+      <button onClick={() => setMode("search")}
+        style={{ fontSize: "20px", padding: "10px 20px" }}>
+        Search
+      </button>
 
       {mode === "chat" ? <Chat /> : <Search />}
     </div>

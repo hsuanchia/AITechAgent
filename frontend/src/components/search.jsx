@@ -40,10 +40,12 @@ function Search() {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search..."
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-        style={{ marginRight: 10 }}
+        style={{ marginRight: 10, fontSize: "20px", padding: "10px 20px" }}
       />
 
-      <button onClick={handleSearch} disabled={loading}>
+      <button onClick={handleSearch} disabled={loading}
+        style={{ fontSize: "20px", padding: "10px 20px" }}
+      >
         {loading ? "Searching..." : "Search"}
       </button>
 

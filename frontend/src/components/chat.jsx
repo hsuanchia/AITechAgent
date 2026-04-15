@@ -63,10 +63,12 @@ function Chat() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-        style={{ marginRight: 10 }}
+        style={{ marginRight: 10, fontSize: "20px", padding: "10px 20px" }}
       />
 
-      <button onClick={sendMessage} disabled={loading}>
+      <button onClick={sendMessage} disabled={loading}
+        style={{ fontSize: "20px", padding: "10px 20px" }}
+      >
         Send
       </button>
     </div>
