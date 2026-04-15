@@ -5,8 +5,10 @@ function Search() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
+  const handleSearch = async (inputQuery) => {
+    const q = inputQuery ?? query;
+
+    if (!q.trim()) return;
 
     setLoading(true);
 
@@ -16,12 +18,16 @@ function Search() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ query })
+        body: JSON.stringify({ query : q })
       });
 
       const data = await res.json();
 
-      setResults(data.results || []);
+      setResults([]); // 🔥 先清掉
+      setTimeout(() => {
+        setResults(data.results || []);
+        setLoading(false);
+      }, 0);
 
     } catch (err) {
       console.error(err);
@@ -39,11 +45,15 @@ function Search() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search..."
-        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSearch(e.target.value);
+          }
+        }}
         style={{ marginRight: 10, fontSize: "20px", padding: "10px 20px" }}
       />
 
-      <button onClick={handleSearch} disabled={loading}
+      <button onClick={() => handleSearch(query)} disabled={loading}
         style={{ fontSize: "20px", padding: "10px 20px" }}
       >
         {loading ? "Searching..." : "Search"}
@@ -55,7 +65,7 @@ function Search() {
 
       <ul>
         {results.map((r, i) => (
-          <li key={i} style={{ marginBottom: 20 }}>
+          <li key={r.id || r.title || i} style={{ marginBottom: 20 }}>
             <h3>{r.title}</h3>
             <p>{r.abstract}</p>
 
