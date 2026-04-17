@@ -23,7 +23,7 @@ conn = psycopg.connect(**config)
 cur = conn.cursor()
 
 def retrieve(query, top_k=5):
-    q_emb = model.encode(query, device='cuda', normalize_embeddings=True, show_progress_bar=True).tolist()
+    q_emb = model.encode(query, device='cuda', normalize_embeddings=True).tolist()
 
     # Grab 50 candidates for better reranking 
     # <=> means cosine similarity for pgvector 
@@ -32,7 +32,7 @@ def retrieve(query, top_k=5):
     SELECT id, title, abstract
     FROM papers
     ORDER BY embedding_bge <-> %s::vector 
-    LIMIT 15
+    LIMIT 20
     """, (q_emb,))
     
     candidates = cur.fetchall()
@@ -40,7 +40,7 @@ def retrieve(query, top_k=5):
     combine = candidates + keywords
 
     # Rerank
-    print("Reranking...")
+    # print("Reranking...")
     pairs = [(query, title + "\n" + abstract) for _, title, abstract in combine]
     with torch.no_grad():
         inputs = tokenizer(pairs, padding=True, truncation=True, return_tensors='pt', max_length=512)

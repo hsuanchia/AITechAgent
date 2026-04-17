@@ -34,13 +34,20 @@ AITechAgent/
 |
 └── README.md
 ```
-# Inital result
-> Current result are not stable, **NOT** all question can be answered well, still in improvement...
-* Chat with RAG example 1
-<img src="./Imgs/init_rag_1.png" width="400">
+# Current RAG result
+* RAG
+    * Current model - google/flan-t5-small
+    * Current retrieval strategy - Top-k(k=5) with reranking(top-20)
+    * Current embedding model: BAAI/bge-small-en-v1.5
+    * Current reranking model: BAAI/bge-reranker-base
+* Example 1
+<img src="/Imgs/Improve_rag_1.png" width="800">
 
-* Chat with RAG example 2
-<img src="./Imgs/init_rag_2.png" width="400">
+* Example 2
+<img src="/Imgs/Improve_rag_2.png" width="800">
+
+* Example 3
+<img src="/Imgs/Improve_rag_3.png" width="800">
 
 # Demo
 ![AITechAgent Local Demo](/Imgs/Simple_demo_0415.gif)
@@ -49,8 +56,3 @@ AITechAgent/
 * Agent / MCP
 * Metadata for PostgreSQL
 * Updata database everyday(Crawling from arxiv api and process data into database)
-* RAG
-    * Current model - google/flan-t5-small
-    * Current retrieval strategy - Top-k(k=5) with reranking(top-50)
-    * Prompt engineering
-    * Not inaccurate chatting
