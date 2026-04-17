@@ -44,10 +44,10 @@ AITechAgent/
 <img src="/Imgs/Improve_rag_1.png" width="800">
 
 * Example 2
-<img src="/Imgs/Improve_rag_2.png" width="800">
+<img src="/Imgs/Improve_rag_2.png" width="600">
 
 * Example 3
-<img src="/Imgs/Improve_rag_3.png" width="800">
+<img src="/Imgs/Improve_rag_3.png" width="400">
 
 # Demo
 ![AITechAgent Local Demo](/Imgs/Simple_demo_0415.gif)
