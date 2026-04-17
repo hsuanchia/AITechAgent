@@ -1,8 +1,9 @@
-import psycopg, json
+import psycopg, json, time
 from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from sentence_transformers import SentenceTransformer, CrossEncoder
-from transformers import pipeline
+from sentence_transformers import SentenceTransformer
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 from rag import rewrite_query, retrieve, build_context
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -18,13 +19,24 @@ app.add_middleware(
 with open("config.json") as f:
     config = json.load(f)
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
-reranker = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
+
+model = SentenceTransformer('BAAI/bge-small-en-v1.5')
+tokenizer = AutoTokenizer.from_pretrained('BAAI/bge-reranker-base')
+reranker = AutoModelForSequenceClassification.from_pretrained('BAAI/bge-reranker-base')
+reranker.eval()
 generator = pipeline(
     "text2text-generation",
+    device='cuda',
     model="google/flan-t5-small",
     max_length=512
 )
+
+def fake_stream_answer(text):
+    # 模擬逐字輸出（你之後換成 LLM streaming）
+    for word in text.split():
+        yield word + " "
+        time.sleep(0.1)
+
 class SearchRequest(BaseModel):
     query: str
 
@@ -91,6 +103,7 @@ def chat(req: ChatRequest):
     response = generator(prompt)
     answer = response[0]['generated_text']
 
-    return {
-        "answer": answer
-    }
+    return StreamingResponse(
+        fake_stream_answer(answer),
+        media_type="text/plain"
+    )
