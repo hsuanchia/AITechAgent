@@ -50,7 +50,7 @@ AITechAgent/
 <img src="/Imgs/Improve_rag_3.png" width="400">
 
 # Demo
-![AITechAgent Local Demo](/Imgs/Simple_demo_0415.gif)
+![AITechAgent Local Demo](/Imgs/Simple_demo_0417.gif)
 
 # To do
 * Agent / MCP
