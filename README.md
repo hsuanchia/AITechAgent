@@ -56,3 +56,10 @@ AITechAgent/
 * Agent / MCP
 * Metadata for PostgreSQL
 * Updata database everyday(Crawling from arxiv api and process data into database)
+
+# Current limitation
+* Hardware: RTX 3060 Laptop GPU -> Almost broken for the heat dissipation issue QAQ 
+* So using small model is the only option for me currently
+    * Maybe try large model after upgrade my hardware 
+* Using current trending models is expensive for me
+    * Maybe try in the future
