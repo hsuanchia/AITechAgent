@@ -1,9 +1,15 @@
-import psycopg, json
+import psycopg, json, torch
 from sentence_transformers import SentenceTransformer, CrossEncoder
-from transformers import pipeline
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
-reranker = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
+# model = SentenceTransformer('all-MiniLM-L6-v2')
+# reranker = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
+
+model = SentenceTransformer('BAAI/bge-small-en-v1.5')
+tokenizer = AutoTokenizer.from_pretrained('BAAI/bge-reranker-base')
+reranker = AutoModelForSequenceClassification.from_pretrained('BAAI/bge-reranker-base')
+reranker.eval()
+
 generator = pipeline(
     "text2text-generation",
     model="google/flan-t5-small",
@@ -17,7 +23,7 @@ conn = psycopg.connect(**config)
 cur = conn.cursor()
 
 def retrieve(query, top_k=5):
-    q_emb = model.encode(query).tolist()
+    q_emb = model.encode(query, device='cuda', normalize_embeddings=True, show_progress_bar=True).tolist()
 
     # Grab 50 candidates for better reranking 
     # <=> means cosine similarity for pgvector 
@@ -25,8 +31,8 @@ def retrieve(query, top_k=5):
     cur.execute("""
     SELECT id, title, abstract
     FROM papers
-    ORDER BY embedding <-> %s::vector 
-    LIMIT 50
+    ORDER BY embedding_bge <-> %s::vector 
+    LIMIT 15
     """, (q_emb,))
     
     candidates = cur.fetchall()
@@ -34,8 +40,13 @@ def retrieve(query, top_k=5):
     combine = candidates + keywords
 
     # Rerank
-    pairs = [(query, title + " " + abstract) for _, title, abstract in combine]
-    scores = reranker.predict(pairs)
+    print("Reranking...")
+    pairs = [(query, title + "\n" + abstract) for _, title, abstract in combine]
+    with torch.no_grad():
+        inputs = tokenizer(pairs, padding=True, truncation=True, return_tensors='pt', max_length=512)
+        scores = reranker(**inputs, return_dict=True).logits.view(-1, ).float()
+
+    # scores = reranker.predict(pairs)
 
     # Sorting
     ranked = sorted(zip(candidates, scores), key=lambda x: x[1], reverse=True)
