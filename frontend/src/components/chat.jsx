@@ -1,5 +1,19 @@
 import { useState, useRef, useEffect } from "react";
 
+function Thinking() {
+  const [dots, setDots] = useState("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots((prev) => (prev.length >= 3 ? "" : prev + "."));
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return <span>Thinking{dots}</span>;
+}
+
 function Chat() {
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState([]);
@@ -98,7 +112,7 @@ function Chat() {
 
         {loading && (
           <div style={{ ...styles.message, background: "#555" }}>
-            Thinking...
+            <Thinking />
           </div>
         )}
 
