@@ -48,6 +48,7 @@ AITechAgent/
 
 * Example 3
 <img src="/Imgs/Improve_rag_3.png" width="400">
+
 # RAG After reasoning
 * Current progress (Minimal agent)
 > User Query -> Rewrite query -> Retrieval -> **Reasoning** -> Answer
