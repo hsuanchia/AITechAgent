@@ -12,6 +12,7 @@ reranker.eval()
 
 generator = pipeline(
     "text2text-generation",
+    device='cuda',
     model="google/flan-t5-small",
     max_length=512
 )
@@ -91,27 +92,60 @@ def rewrite_query(query):
     rewrite = rewritten[0]['generated_text']
     return rewrite.strip()
 
+def reasoning(context, query):
+    prompt = f"""
+    Extract structured insights from the context.
+
+    Output format:
+    - Key methods:
+    - Key findings:
+    - Relevant concepts:
+    - Important differences:
+
+    Context:
+    {context}
+
+    Question:
+    {query}
+
+    Answer:
+    """
+
+    response = generator(prompt)
+    answer = response[0]['generated_text']
+    return answer
+
 def ask(query):
+    print("Rewriting query...")
     rewriten_query = rewrite_query(query)
+    print("Retrieving papers...")
     results1 = retrieve(query)
     results2 = retrieve(rewriten_query)
+    print("Building context...")
     context = build_context(results1 + results2)
+    print("Context:\n", context, "\n")
+    print("Reasoning...")
+    reason = reasoning(context, query)
+    print(f"Reasoning:\n{reason}\n")
 
     prompt = f"""
             You are a helpful AI assistant.
 
             Your job:
             - Explain concepts clearly (not just list papers)
-            - Use the context as supporting evidence
-            - If the question is general, answer normally
-            - If the user asks for papers:
-                - Return a list of papers
-                - Each paper must include:
-                    - Title
-                    - Short summary (1-2 sentences)
+            - Please answer the current question with some details or summaries, not just a short answer. 
+
+            Instruction:
+            - You MUST reorganize the information into a new structure
+            - You MUST explain in your own words
+            - DO NOT reuse sentence structures from context or insights
+            - Expand each idea with explanation
 
             Context:
             {context}
+
+            Structured Insights:
+            {reasoning}
 
             Current Question:
             {query}

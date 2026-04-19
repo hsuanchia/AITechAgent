@@ -34,7 +34,7 @@ AITechAgent/
 |
 └── README.md
 ```
-# Current RAG result
+# RAG Result
 * RAG
     * Current model - google/flan-t5-small
     * Current retrieval strategy - Top-k(k=5) with reranking(top-20)
@@ -48,14 +48,24 @@ AITechAgent/
 
 * Example 3
 <img src="/Imgs/Improve_rag_3.png" width="400">
+# RAG After reasoning
+* Current progress (Minimal agent)
+> User Query -> Rewrite query -> Retrieval -> **Reasoning** -> Answer
+* Also fix prompt and reasoning prompt
+* Example 1
+<img src="/Imgs/rag_reasoning_1.png" width="800">
 
+* Example 2
+<img src="/Imgs/rag_reasoning_2.png" width="600">
+
+* Example 3
+<img src="/Imgs/rag_reasoning_3.png" width="400">
 # Demo
 ![AITechAgent Local Demo](/Imgs/Simple_demo_0417.gif)
 
 # To do
-* Agent / MCP
 * Metadata for PostgreSQL
-* Updata database everyday(Crawling from arxiv api and process data into database)
+* Update database everyday(Crawling from arxiv api and process data into database)
 
 # Current limitation
 * Hardware: RTX 3060 Laptop GPU -> Almost broken for the heat dissipation issue QAQ 
