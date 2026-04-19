@@ -61,6 +61,7 @@ AITechAgent/
 
 * Example 3
 <img src="/Imgs/rag_reasoning_3.png" width="800">
+
 # Demo
 ![AITechAgent Local Demo](/Imgs/Simple_demo_0417.gif)
 
