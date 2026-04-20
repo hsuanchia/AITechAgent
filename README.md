@@ -1,15 +1,34 @@
 # AITechAgent
+
 # Motivation
 > 有鑑於技術的更新速度太快，自己慢慢看花費時間又太長，因此希望建立起一個系統可以透過Agent幫我整理並且回答我問題 
 >
 > 希望透過這個Project拾回從前學習新技術的心態與衝勁，把自己也做一次技術上的更新><
 >
 > 預期利用技術: PostgreSQL, RAG, Agents, MCP, FastAPI, React,
+
+# Package version
+```bash
+python==3.8
+torch==1.13.1+cu116
+torchversion==0.14.1+cu116
+torchinfo==1.8.0
+transformers==4.46.3
+sentence-transformers==3.2.1
+fastapi==0.124.4
+psycopg==3.2.13
+rich==3.5.2
+
+PostgreSQL 18
+react 19.2.4
+```
+
 # Data
 * Public data from [arxiv.org](https://arxiv.org/)
 >**Thank you to arXiv for use of its open access interoperability!**
 * Use data with cs.AI & cs.LG tag -> May crawling cs.CV in future
 * Using paper published from 2025/01 ~ 2026/04
+
 # Codes
 ```text
 AITechAgent/
