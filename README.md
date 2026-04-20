@@ -7,22 +7,6 @@
 >
 > 預期利用技術: PostgreSQL, RAG, Agents, MCP, FastAPI, React,
 
-# Package version
-```bash
-python==3.8
-torch==1.13.1+cu116
-torchversion==0.14.1+cu116
-torchinfo==1.8.0
-transformers==4.46.3
-sentence-transformers==3.2.1
-fastapi==0.124.4
-psycopg==3.2.13
-rich==3.5.2
-
-PostgreSQL 18
-react 19.2.4
-```
-
 # Data
 * Public data from [arxiv.org](https://arxiv.org/)
 >**Thank you to arXiv for use of its open access interoperability!**
@@ -94,3 +78,19 @@ AITechAgent/
     * Maybe try large model after upgrade my hardware 
 * Using current trending models is expensive for me
     * Maybe try in the future
+
+# Package version
+```bash
+python==3.8
+torch==1.13.1+cu116
+torchversion==0.14.1+cu116
+torchinfo==1.8.0
+transformers==4.46.3
+sentence-transformers==3.2.1
+fastapi==0.124.4
+psycopg==3.2.13
+rich==3.5.2
+
+PostgreSQL 18
+react 19.2.4
+```
