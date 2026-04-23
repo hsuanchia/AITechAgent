@@ -35,9 +35,7 @@ AITechAgent/
 |
 ├── rag.py                  # Model inferece with RAG
 |
-├── update.py               # Update database from newest data in DB to now
-|
-└── README.md
+└──update.py               # Update database from newest data in DB to now
 ```
 # RAG Result
 * RAG
@@ -71,7 +69,9 @@ AITechAgent/
 ![AITechAgent Local Demo](/Imgs/Simple_demo_0417.gif)
 
 # To do
-* Metadata for PostgreSQL
+* Optimization frontend
+* Optimization RAG
+* Optimization Search -> not only search on title
 
 # Current limitation
 * Hardware: RTX 3060 Laptop GPU -> Almost broken for the heat dissipation issue QAQ 
