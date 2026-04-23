@@ -69,9 +69,9 @@ AITechAgent/
 ![AITechAgent Local Demo](/Imgs/Simple_demo_0417.gif)
 
 # To do
-* Optimization frontend
-* Optimization RAG
-* Optimization Search -> not only search on title
+* Optimize frontend
+* Optimize RAG
+* Optimize Search -> not only search on title
 
 # Current limitation
 * Hardware: RTX 3060 Laptop GPU -> Almost broken for the heat dissipation issue QAQ 
