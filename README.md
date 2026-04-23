@@ -35,6 +35,8 @@ AITechAgent/
 |
 ├── rag.py                  # Model inferece with RAG
 |
+├── update.py               # Update database from newest data in DB to now
+|
 └── README.md
 ```
 # RAG Result
@@ -70,7 +72,6 @@ AITechAgent/
 
 # To do
 * Metadata for PostgreSQL
-* Update database everyday(Crawling from arxiv api and process data into database)
 
 # Current limitation
 * Hardware: RTX 3060 Laptop GPU -> Almost broken for the heat dissipation issue QAQ 
